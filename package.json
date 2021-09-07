@@ -1,0 +1,34 @@
+{
+  "name": "distributedsystem-datasimulator",
+  "version": "1.0.0",
+  "description": "Service to simualate user behavioral data",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vahagsaribekyan/DistributedSystem-Simulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vahagsaribekyan/DistributedSystem-Simulator/issues"
+  },
+  "homepage": "https://github.com/vahagsaribekyan/DistributedSystem-Simulator#readme",
+  "author": "vsaribekyan",
+  "license": "ISC",
+  "dependencies": {
+    "dd-trace": "^1.3.0",
+    "dotenv": "^10.0.0",
+    "envalid": "6.0.1",
+    "express": "^4.17.1",
+    "express-joi-validation": "^5.0.0",
+    "hot-shots": "^8.5.1",
+    "joi": "^17.4.2",
+    "lodash": "^4.17.21",
+    "swagger-ui-express": "^4.1.6",
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3",
+    "yamljs": "^0.3.0"
+  }
+}

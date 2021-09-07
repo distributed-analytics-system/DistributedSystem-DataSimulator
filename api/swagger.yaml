@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info: 
+  title: User behavioral data simulator
+  description: Distributed analytics system
+  version: 1.0.0
+servers:
+  - url: /v1
+paths: 
+  /simulate:
+    get:
+      parameters:
+        - name: recordCount
+          in: query
+          description: The count of the records that need to be generated
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 1000
+      responses: 
+        201:
+          description: Events generated
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas: 
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+      required:
+        - code
+        - message
