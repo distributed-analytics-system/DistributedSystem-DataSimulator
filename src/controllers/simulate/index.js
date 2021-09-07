@@ -10,7 +10,7 @@ const validation = {
 };
 
 module.exports = {
-  method: 'get',
+  method: 'post',
   route: '/v1/simulate',
   validation,
   handler
