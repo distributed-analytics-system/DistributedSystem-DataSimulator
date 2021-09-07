@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
   logger.debug({ message: 'Simulating user behavioral data', id: reqId });
   try {
-    // TODO
+    // TODO add logic
   } catch (err) {
     throw new error.InternalServerError({ message: err.message });
   }
