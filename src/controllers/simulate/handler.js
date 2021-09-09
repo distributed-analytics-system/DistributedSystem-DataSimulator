@@ -3,7 +3,7 @@
 const logger = require('../../logger');
 const error = require('../../errors');
 const { dataReceiverBaseUrl } = require('../../config');
-const { usersCount, screens } = require('../../constants');
+const { usersCount, screens, maxEventCountToBeSent } = require('../../constants');
 
 const { v4: uuid } = require('uuid');
 const momentRandom = require('moment-random');
@@ -34,10 +34,26 @@ module.exports = async (req, res) => {
       randomData.push(a);
     }
 
-    // send the data to DataReceiver
-    await got.post(`${dataReceiverBaseUrl}/v1/events`, {
-      json: randomData
-    });
+    // Send data by chunks
+    const chunkedEvents = randomData.reduce((resultArray, item, index) => { 
+      const chunkIndex = Math.floor(index / maxEventCountToBeSent);
+
+      if (!resultArray[chunkIndex]) {
+        resultArray[chunkIndex] = [] // start a new chunk
+      }
+
+      resultArray[chunkIndex].push(item)
+
+      return resultArray
+    }, []);
+
+
+    for (let chunk of chunkedEvents) {
+      // send the data to DataReceiver
+      await got.post(`${dataReceiverBaseUrl}/v1/events`, {
+        json: chunk
+      });
+    }
   } catch (err) {
     throw new error.InternalServerError({ message: err.message });
   }

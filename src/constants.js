@@ -9,5 +9,6 @@ module.exports = {
     'settings',
     'notifications'
   ],
-  usersCount: 20
+  usersCount: 20,
+  maxEventCountToBeSent: 1000
 };
