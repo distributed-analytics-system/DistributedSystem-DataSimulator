@@ -5,6 +5,7 @@ const Joi = require('joi');
 
 const validation = {
   query: Joi.object({
+    userCount: Joi.number().positive().required(),
     recordCount: Joi.number().positive().required()
   })
 };

@@ -3,7 +3,7 @@
 const logger = require('../../logger');
 const error = require('../../errors');
 const { dataReceiverBaseUrl } = require('../../config');
-const { usersCount, screens, maxEventCountToBeSent } = require('../../constants');
+const { screens, maxEventCountToBeSent } = require('../../constants');
 
 const { v4: uuid } = require('uuid');
 const momentRandom = require('moment-random');
@@ -11,7 +11,7 @@ const got = require('got');
 
 module.exports = async (req, res) => {
   const {
-    query: { recordCount },
+    query: { userCount, recordCount },
     metadata: { reqId }
   } = req;
 
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
   try {
     // generate user-uuids
     let users = [];
-    for (let i = 0; i <= usersCount; ++i) {
+    for (let i = 0; i < userCount; ++i) {
       users.push(uuid());
     }
 
