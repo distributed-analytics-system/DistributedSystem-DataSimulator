@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-simulator
+spec:
+  selector:
+    matchLabels:
+      app: data-simulator
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: data-simulator
+    spec:
+      containers:
+      - name: data-simulator
+        image: 465310913908.dkr.ecr.us-east-2.amazonaws.com/distributed-system:data-simulator
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
